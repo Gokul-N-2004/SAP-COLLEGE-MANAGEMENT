@@ -1,0 +1,55 @@
+managed implementation in class ZBP_R_CIT_FACULTY_301 unique;
+strict ( 2 );
+with draft;
+extensible;
+define behavior for ZR_CIT_FACULTY_301 alias ZrCitFaculty301
+persistent table ZCIT_FACULTY_301
+extensible
+draft table ZCIT_FCLTY_301_D
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master( global )
+{
+  field ( mandatory : create )
+   FacID;
+
+  field ( readonly )
+   CreatedBy,
+   CreatedAt,
+   LastChangedBy,
+   LastChangedAt,
+   LocalLastChangedAt;
+
+  field ( readonly : update )
+   FacID;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZCIT_FACULTY_301 corresponding extensible
+  {
+    FacID = FAC_ID;
+    FacName = FAC_NAME;
+    FacSubject = FAC_SUBJECT;
+    CukyField = CUKY_FIELD;
+    FacSalary = FAC_SALARY;
+    FacMobileNumber = FAC_MOBILE_NUMBER;
+    FacEmail = FAC_EMAIL;
+    FacAge = FAC_AGE;
+    FacExperience = FAC_EXPERIENCE;
+    CreatedBy = CREATED_BY;
+    CreatedAt = CREATED_AT;
+    LastChangedBy = LAST_CHANGED_BY;
+    LastChangedAt = LAST_CHANGED_AT;
+    LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+  }
+
+}
